@@ -15,16 +15,16 @@
     <div
       class="w-full h-full z-10 relative flex flex-col items-center justify-center"
     >
-      <div class="relative">
+      <div class="relative flex flex-col items-center">
         <h1
-          class="absolute -top-16 uppercase sm:tracking-[1em] text-white text-4xl w-full text-center"
+          class="absolute -top-16 uppercase text-white text-4xl text-center flex justify-between w-3/4 max-w-[24rem] sm:w-full mx-auto"
         >
-          Gallery
+          <span v-for="item in 'Gallery'.split('')">{{ item }}</span>
         </h1>
         <img
           src="./assets/images/logo-white.png"
           alt=""
-          class="w-3/4 mx-auto max-w-[24rem] sm:w-full mt-8 hover:opacity-0 transition-all ease-in"
+          class="w-3/4 max-w-[24rem] sm:w-full mx-auto mt-8 hover:opacity-0 transition-all ease-in"
         />
       </div>
       <div
