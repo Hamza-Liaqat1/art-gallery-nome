@@ -47,13 +47,26 @@ import Footer from './Footer.vue';
                         </li>
                         <li>4. Proceed with the mint in the wallet</li>
                     </ol>
-                    <input type="email" placeholder="email"
-                        class="max-w-xs bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full mt-10 placeholder:italic placeholder:text-gray-600 text-lg outline-0">
                 </div>
             </article>
-            <aside class="xl:basis-1/3 basis-1/2">
-                <img src="../assets/images/bear-wallpaper.png" alt="" class="w-auto max-h-[600px]">
+            <aside class="xl:basis-1/3 basis-1/2 w-full">
+                <img src="../assets/images/bear-wallpaper.png" alt="" class="w-auto max-h-[380px] mx-auto">
             </aside>
+        </section>
+        <section class="max-w-[1440px]">
+            <form class="pt-8 p-6 md:p-8 md:pt-6 pb-0 w-full  flex flex-col md:flex-row gap-y-6 items-center"
+                @submit="ev => ev.preventDefault()">
+                <input type="email" placeholder="email"
+                    class="xl:basis-1/3 sm:max-w-xs bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full placeholder:italic placeholder:text-gray-600 text-lg outline-0"
+                    required>
+                <div class="xl:basis-1/3 text-center w-full">
+
+                    <button type="submit"
+                        class="  bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem]">
+                        Free mint
+                    </button>
+                </div>
+            </form>
         </section>
         <Footer />
     </main>
