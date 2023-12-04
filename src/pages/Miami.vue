@@ -29,20 +29,24 @@
                 To get a free BTC wallpaper on mobile:
             </p>
 
-            <ol class="mt-8 flex flex-col gap-2">
-                <li>1. Download & install <a href="">Xverse</a> wallet</li>
-                <li>
-                    2. Go to the browser section -
-                    <img src="../assets/images/world_icon.png" alt="" class="h-4 inline" />
-                </li>
-                <li>
-                    3. Enter URL on top:
-                    <a class="inline underline underline-offset-4 italic" href="https://nome.gallery/miami">
-                        nome.gallery/miami
-                    </a>
-                </li>
-                <li>4. Proceed with the mint in the wallet</li>
-            </ol>
+            <div class="w-max">
+                <ol class="mt-8 flex flex-col gap-2">
+                    <li>1. Download & install <a href="">Xverse</a> wallet</li>
+                    <li>
+                        2. Go to the browser section -
+                        <img src="../assets/images/world_icon.png" alt="" class="h-4 inline" />
+                    </li>
+                    <li>
+                        3. Enter URL on top:
+                        <a class="inline underline underline-offset-4 italic" href="https://nome.gallery/miami">
+                            nome.gallery/miami
+                        </a>
+                    </li>
+                    <li>4. Proceed with the mint in the wallet</li>
+                </ol>
+                <input type="email" placeholder="email"
+                    class="bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full mt-10 placeholder:italic placeholder:text-gray-600 text-lg outline-0">
+            </div>
         </section>
     </main>
 </template>
