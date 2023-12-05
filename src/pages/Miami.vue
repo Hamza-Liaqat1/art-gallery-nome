@@ -3,12 +3,20 @@ import { createClient } from '@supabase/supabase-js'
 import { createInscription, BitcoinNetworkType } from 'sats-connect'
 
 import Footer from './Footer.vue';
+import { computed, ref } from 'vue';
 const supabaseUrl = 'https://ftnvenogeqopznklvbia.supabase.co'
 const supabaseKey = import.meta.env.VITE_APP_SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+const email = ref("")
+const isEmailValid = computed(() => {
+    return email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+})
+const isEmailSet = localStorage.getItem("EMAIL_SET") !== null;
 const inscribe = async () => {
-
+    if (!isEmailSet) {
+        submitEmail()
+    }
     createInscription({
         onFinish() { },
         onCancel() { },
@@ -24,14 +32,12 @@ const inscribe = async () => {
 </body>`,
         },
     })
-
 }
 
-const submitEmail = async (event: Event) => {
-    event.preventDefault()
-    const email = (event.target as HTMLFormElement).email.value
+const submitEmail = async () => {
     const { data, error } = await supabase.from('Emails').insert([{ email }])
     if (error) {
+        localStorage.setItem("EMAIL_SET", '1')
         console.log(error)
     } else {
         console.log(data)
@@ -55,7 +61,7 @@ const submitEmail = async (event: Event) => {
             </div>
         </header>
         <section class="w-full pt-16 p-6 md:p-14 pb-0 flex flex-col md:flex-row gap-16 max-w-[1440px]">
-            <article class="xl:basis-1/3 basis-1/2">
+            <article class="xl:basis-1/3 basis-1/2 max-w-sm">
                 <div class="text-4xl italic relative w-max mb-10">
                     <h3 class="text-lg">Thank you for visiting the</h3>
                     <hr class="bottom-4 absolute w-full border-t-[3px] z-0" />
@@ -86,19 +92,25 @@ const submitEmail = async (event: Event) => {
                     </ol>
                 </div>
             </article>
-            <aside class="xl:basis-1/3 basis-1/2 w-full">
+            <aside class="xl:basis-1/3 basis-1/2 w-full flex flex-col items-center relative">
                 <img src="../assets/images/bear-wallpaper.png" alt="" class="w-auto max-h-[380px] mx-auto">
+                <button type="button" @click="inscribe()" :disabled="!isEmailValid"
+                    class="md:block hidden bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem] absolute -bottom-[8rem] disabled:opacity-50 disabled:cursor-not-allowed">
+                    Free mint
+                </button>
+
             </aside>
         </section>
         <section class="max-w-[1440px]">
             <form class="pt-8 p-6 md:p-8 md:pt-6 pb-0 w-full  flex flex-col md:flex-row gap-y-6 items-center">
-                <input type="email" placeholder="email" name="email"
-                    class="xl:basis-1/3 sm:max-w-xs bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full placeholder:italic placeholder:text-gray-600 text-lg outline-0"
+                <input type="email" placeholder="email" name="email" v-model="email" autocomplete="new-password"
+                    :class="{ 'border-red-500': email && !isEmailValid, 'border-green-500': isEmailValid }"
+                    class="xl:basis-1/3 max-w-xs bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full placeholder:italic placeholder:text-gray-600 text-lg outline-0 transition-all"
                     required>
                 <div class="xl:basis-1/3 text-center w-full">
 
-                    <button type="button" @click="inscribe()"
-                        class="bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem]">
+                    <button :disabled="!isEmailValid" type="button" @click="inscribe()"
+                        class="md:hidden bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem] disabled:opacity-50 disabled:cursor-not-allowed">
                         Free mint
                     </button>
                 </div>
