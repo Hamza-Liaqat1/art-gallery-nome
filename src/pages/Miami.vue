@@ -1,5 +1,42 @@
 <script setup lang="ts">
+import { createClient } from '@supabase/supabase-js'
+import { createInscription, BitcoinNetworkType } from 'sats-connect'
+
 import Footer from './Footer.vue';
+const supabaseUrl = 'https://ftnvenogeqopznklvbia.supabase.co'
+const supabaseKey = import.meta.env.VITE_APP_SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+const inscribe = async () => {
+
+    createInscription({
+        onFinish() { },
+        onCancel() { },
+        payload: {
+            network: {
+                type: BitcoinNetworkType.Mainnet
+            },
+
+            payloadType: "PLAIN_TEXT",
+            contentType: 'text/html',
+            content: `<body style="height: 100vh; margin:0; padding: 0;">
+<img src="/content/f521bd6f20436933d980a326fd983f84d13a04bd952f12a52f57ea7d27fb00c3i0" style="width: 100%; height: 100%; display: block; object-fit: contain;">
+</body>`,
+        },
+    })
+
+}
+
+const submitEmail = async (event: Event) => {
+    event.preventDefault()
+    const email = (event.target as HTMLFormElement).email.value
+    const { data, error } = await supabase.from('Emails').insert([{ email }])
+    if (error) {
+        console.log(error)
+    } else {
+        console.log(data)
+    }
+}
 </script>
 <template>
     <main class="w-full bg-black text-white">
@@ -54,15 +91,14 @@ import Footer from './Footer.vue';
             </aside>
         </section>
         <section class="max-w-[1440px]">
-            <form class="pt-8 p-6 md:p-8 md:pt-6 pb-0 w-full  flex flex-col md:flex-row gap-y-6 items-center"
-                @submit="ev => ev.preventDefault()">
-                <input type="email" placeholder="email"
+            <form class="pt-8 p-6 md:p-8 md:pt-6 pb-0 w-full  flex flex-col md:flex-row gap-y-6 items-center">
+                <input type="email" placeholder="email" name="email"
                     class="xl:basis-1/3 sm:max-w-xs bg-black px-4 py-2 rounded-xl border border-solid border-gray-500 w-full placeholder:italic placeholder:text-gray-600 text-lg outline-0"
                     required>
                 <div class="xl:basis-1/3 text-center w-full">
 
-                    <button type="submit"
-                        class="  bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem]">
+                    <button type="button" @click="inscribe()"
+                        class="bg-white rounded-2xl text-black uppercase text-xl h-12 w-full max-w-[15rem]">
                         Free mint
                     </button>
                 </div>
