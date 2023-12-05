@@ -54,7 +54,7 @@ const submitEmail = async () => {
 
                 <a href="http://nome.wtf" class="underline underline-offset-8 basis-1/5 text-end">nome.wtf</a>
             </div>
-            <div class="absolute -bottom-10 right-8 flex flex-col text-center text-xl italic">
+            <div class="absolute -bottom-10 right-8 md:right-56 flex flex-col text-center text-xl italic">
                 <span>Bitcoin</span>
                 <span>Phone</span>
                 <span>Wallpaper</span>
