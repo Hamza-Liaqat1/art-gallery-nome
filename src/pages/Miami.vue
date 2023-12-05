@@ -27,8 +27,8 @@ const inscribe = async () => {
 
             payloadType: "PLAIN_TEXT",
             contentType: 'text/html',
-            content: `<body style="height: 100vh; margin:0; padding: 0;">
-<img src="/content/f521bd6f20436933d980a326fd983f84d13a04bd952f12a52f57ea7d27fb00c3i0" style="width: 100%; height: 100%; display: block; object-fit: contain;">
+            content: `<body style="height: 100vh; margin:0;">
+<img src="/content/f521bd6f20436933d980a326fd983f84d13a04bd952f12a52f57ea7d27fb00c3i0" style="width: 100%; height: 100%; object-fit: contain;">
 </body>`,
         },
     })
