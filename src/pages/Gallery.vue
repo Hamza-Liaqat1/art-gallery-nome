@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 const volume = ref(50);
-const isMuted = ref(false);
+const isMuted = ref(true);
 
 function toggleVideoSound(_: Event){
     let video = document.getElementById("video") as HTMLVideoElement;
@@ -31,6 +31,7 @@ function handleVolumeChange(e: Event){
         playsinline
         loop
         id="video"
+        muted
         autoplay
         preload="auto"
         class="min-w-full min-h-full object-cover fixed z-0"
