@@ -16,7 +16,7 @@
       </div>
       <div class="fixed bottom-0 w-full flex justify-between pb-10 text-white sm:text-xl px-4 sm:px-12 flex-wrap">
         <div class="capitalize">JAN 2024</div>
-        <div class="capitalize">The first Ordinals Gallery</div>
+        <div class="">The first Ordinals Gallery</div>
       </div>
     </div>
   </div>
