@@ -15,7 +15,12 @@ const routes = [
     path: "/gallery",
     name: "Gallery",
     component: () => import("./pages/Gallery.vue"!)
-  }
+  },
+  {
+    path: "/intro",
+    name: "Intro",
+    component: () => import("./pages/Intro.vue"!)
+  },
 ];
 
 const router = createRouter({
